@@ -2,6 +2,8 @@
 createStudySequence = function(probability_of_cat_repetition,stimuliNumber,num_trials){
 
   # five families chosen randomly per block. needs to be changed below.
+  # change to create the study sequence out of a subset of all stimuli and leave the rest out to be novel.
+  ## 15 letters are randomly picked for training, 11 held out as novel transfer items
   
   if(stimuliNumber==0){
     stimuli = "highsim"

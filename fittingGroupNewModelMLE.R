@@ -2,7 +2,7 @@
 rm(list=ls())
 
 #read the  model in
-source(paste(getwd(),"ACT-M_model.R",sep="/"))
+source(paste(getwd(),"SAT-M_model.R",sep="/"))
 source(paste(getwd(),"createStudySequence.R",sep="/"))
 
 #error calculation.

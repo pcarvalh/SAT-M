@@ -2,7 +2,7 @@
 # this model is a function with several variables passed (most of them parameters of the model)
 # this version was updated and optimized for fitting (quicker, more efficient). Carvalho 3/7/2016
 
-model = function(stimuliNumber,typeItem,probability_of_cat_repetition,c,r,weight_shared_same,weight_shared_different,weight_distinctive_same,weight_distinctive_different,gamma,p,L,studysequenceIntHighSim,studysequenceIntLowSim,studysequenceBlkHighSim,studysequenceBlkLowSim,randChoice){
+model = function(k,stimuliNumber,typeItem,probability_of_cat_repetition,c,r,weight_shared_same,weight_shared_different,weight_distinctive_same,weight_distinctive_different,gamma,p,L,studysequenceIntHighSim,studysequenceIntLowSim,studysequenceBlkHighSim,studysequenceBlkLowSim,randChoice){
   
   #get the stimuli. if stimuliNumber == 0, highsim, if == 1, lowsim
   if(stimuliNumber==0){
@@ -26,10 +26,29 @@ model = function(stimuliNumber,typeItem,probability_of_cat_repetition,c,r,weight
   num_trials <- 72 #how many trials were there?
   
   #these are parameters of the model.
-  weight_shared_same<-weight_shared_same
-  weight_shared_different<-weight_shared_different
-  weight_distinctive_same <-weight_distinctive_same
-  weight_distinctive_different<-weight_distinctive_different
+  #weight_shared_same<-weight_shared_same
+  #weight_shared_different<-weight_shared_different
+  #weight_distinctive_same <-weight_distinctive_same
+  #weight_distinctive_different<-weight_distinctive_different
+
+  DimensionWeight<-function (activation1,activation2,category1,category2){ #need to change this in the formula below. Currently four weights.
+    if (category1==category2) 
+    {return (1-logistic(abs(activation1-activation2),k))} 
+    else 
+    {return(logistic(abs(activation1-activation2),k))} 
+  } 
+
+  #standard logistic.  As k increases, closer to a staircase function 
+  logistic <-function (x,k){
+    return (1/(1+exp(-k*(x-0.5))))
+  }
+ 
+  #inverse function for logistic. only extreme points values close to 0 or 1 are weighted 
+  # invLogistic <- function(x,k) { 
+  #  ifelse(x == 0, 0,  
+  #         ifelse(x == 1, 1,  
+  #                -log((1 / x) - 1) / k + 0.5)) 
+  #} 
   
   #are we running the interleaved or the blocked condition?
   probability_of_cat_repetition <- probability_of_cat_repetition #interleaved = 0.25; blocked =0.75

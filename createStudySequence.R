@@ -1,10 +1,14 @@
+
 createStudySequence = function(probability_of_cat_repetition,stimuliNumber){
   
   if(stimuliNumber==0){
     stimuli = "highsim"
   }else{stimuli="lowsim"}
   
-  probability_of_cat_repetition <- probability_of_cat_repetition #interleaved = 0.25; blocked =0.75
+  probability_of_cat_repetition <- probability_of_cat_repetition #interleaved = 0.25; blocked =0.75 
+
+  #this needs three values instead of only one
+
   if(probability_of_cat_repetition == .25){cond="interleaved"}else{cond="blocked"}
   
   file_name<-paste(paste(getwd(),"exemplarsStudy_",sep="/"),stimuli,".csv",sep="") #stimuli used to train the model

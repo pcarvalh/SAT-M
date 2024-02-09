@@ -1,5 +1,7 @@
 
-createStudySequence = function(probability_of_cat_repetition,stimuliNumber){
+createStudySequence = function(probability_of_cat_repetition,stimuliNumber,num_trials){
+
+  # five families chosen randomly per block. needs to be changed below.
   
   if(stimuliNumber==0){
     stimuli = "highsim"
@@ -7,7 +9,7 @@ createStudySequence = function(probability_of_cat_repetition,stimuliNumber){
   
   probability_of_cat_repetition <- probability_of_cat_repetition #interleaved = 0.25; blocked =0.75 
 
-  #this needs three values instead of only one
+  #this needs three values instead of only one .60 probabily of change. there are two "blocked/interleaved" versions: by letter and by font. then there is fully blocked.
 
   if(probability_of_cat_repetition == .25){cond="interleaved"}else{cond="blocked"}
   
@@ -15,7 +17,7 @@ createStudySequence = function(probability_of_cat_repetition,stimuliNumber){
   features<-as.matrix(read.table(file_name, header = TRUE,sep=',')) #read in data from file with headers for the study items
   studyitems = rbind(features,features,features) #repeat the data as many times as needed to simulate one block of study.
   
-  num_trials <- 72
+  num_trials <- num_trials
   
   #studysequence_items = studyitems
   studysequence_items = matrix(NA, nrow = num_trials, ncol = 9)
